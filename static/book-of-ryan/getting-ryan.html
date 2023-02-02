@@ -80,7 +80,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="getting-ryan.html" class="active">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/variables-and-patterns.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="art-of-ryan/importing.html"><strong aria-hidden="true">4.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="art-of-ryan/pattern-matching.html"><strong aria-hidden="true">5.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="art-of-ryan/comprehensions.html"><strong aria-hidden="true">6.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="integrating/the-ryan-cli.html"><strong aria-hidden="true">7.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="integrating/rust.html"><strong aria-hidden="true">8.</strong> Rust</a></li><li class="chapter-item expanded "><a href="integrating/python.html"><strong aria-hidden="true">9.</strong> Python</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="getting-ryan.html" class="active">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/variables-and-patterns.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="art-of-ryan/comprehensions.html"><strong aria-hidden="true">7.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="integrating/the-ryan-cli.html"><strong aria-hidden="true">8.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="integrating/rust.html"><strong aria-hidden="true">9.</strong> Rust</a></li><li class="chapter-item expanded "><a href="integrating/python.html"><strong aria-hidden="true">10.</strong> Python</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,6 +142,41 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="getting-ryan"><a class="header" href="#getting-ryan">Getting Ryan</a></h1>
+<p>There are plenty of different ways to get Ryan. It really depends on what your setup is, since Ryan is designed to be embedded in larger applications, although it also works smootly as a standalone application. There are threrefore, two things that we refer to as Ryan:</p>
+<ol>
+<li>The Ryan CLI: a program that you install in your computer. You pass a <code>.ryan</code> in and get <code>.json</code> out. </li>
+<li>The Ryan library: a dependency you add to you project that takes a <code>.ryan</code> from somewhere and spits out data that your programming environment can understand.</li>
+</ol>
+<p>Depending on your usecase, you might need to install one of the above. Probably most people will want to install both.</p>
+<h2 id="getting-the-ryan-cli"><a class="header" href="#getting-the-ryan-cli">Getting the Ryan CLI</a></h2>
+<h3 id="windows"><a class="header" href="#windows">Windows</a></h3>
+<p>Go to the <a href="https://github.com/tokahuke/ryan/releases">Ryan repository</a> and download the <code>.exe.zip</code> files for the lastest release in your computer. Unzip it and move it to somewhere nice. Don't forget to rename the file to <code>ryan.exe</code> to keep things simple.</p>
+<h3 id="linux"><a class="header" href="#linux">Linux</a></h3>
+<h4 id="first-option"><a class="header" href="#first-option">First option</a></h4>
+<p>Go to the <a href="https://github.com/tokahuke/ryan/releases">Ryan repository</a> and download the <code>.zip</code> files for the lastest release in your computer. Unzip it, rename the binary to <code>ryan</code> and move it to <code>/usr/loca/bin</code> (you will need <code>sudo</code>).</p>
+<blockquote>
+<p>Note: a one-line installer is in the backlog.</p>
+</blockquote>
+<h3 id="if-you-have-cargo"><a class="header" href="#if-you-have-cargo">If you have Cargo</a></h3>
+<p>If you have Cargo, just run:</p>
+<pre><code>cargo install ryan-cli
+</code></pre>
+<p>And you are done. You will not even need <code>sudo</code>!</p>
+<h3 id="macos"><a class="header" href="#macos">MacOS</a></h3>
+<p>By now, mac users will have to go through <code>cargo</code> to install the CLI. Just do</p>
+<pre><code>cargo install ryan-cli
+</code></pre>
+<p>And you are done.</p>
+<blockquote>
+<p>Note: a brew formula for Ryan is in the backlog.</p>
+</blockquote>
+<h2 id="getting-the-ryan-library"><a class="header" href="#getting-the-ryan-library">Getting the Ryan library</a></h2>
+<p>Depending on your language, you can install a binding to Ryan from your standard package manager:</p>
+<pre><code>cargo install ryan      # Rust
+pip install ryan-lang   # Python
+npm install ryan-js     # JavaScript (web)
+</code></pre>
+<p>If a binding is not available to your language, you can always use the Ryan CLI + you favorite JSON parser as a fallback. The Ryan CLI is already thought-out for this kind of programmatic interaction.</p>
 
                     </main>
 
