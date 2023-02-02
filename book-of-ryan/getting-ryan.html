@@ -151,8 +151,10 @@
 <h2 id="getting-the-ryan-cli"><a class="header" href="#getting-the-ryan-cli">Getting the Ryan CLI</a></h2>
 <h3 id="one-liner-linux-macos"><a class="header" href="#one-liner-linux-macos">One-liner (Linux, MacOS)</a></h3>
 <p>Copy and paste the following command in your favorite console:</p>
-<pre><code class="language-sh">curl -L -Ssf &quot;https://raw.githubusercontent.com/tokahuke/ryan/main/install/$(uname).sh&quot; | sudo sh
+<pre><code class="language-sh">curl -L -Ssf &quot;https://raw.githubusercontent.com/tokahuke/ryan/main/install/$(uname).sh&quot; \
+    | sudo sh
 </code></pre>
+<p>You will need <code>sudo</code> rights to run the script (this installation is system-wide).</p>
 <h3 id="download-the-binary-from-github-linux-macos-windows"><a class="header" href="#download-the-binary-from-github-linux-macos-windows">Download the binary from GitHub (Linux, MacOS, Windows)</a></h3>
 <p>Go to the <a href="https://github.com/tokahuke/ryan/releases/latest">Ryan repository</a> and download the zipped file corresponding to your platform. Unzip it and move it to somewhere nice!</p>
 <h3 id="using-cargo"><a class="header" href="#using-cargo">Using <code>cargo</code></a></h3>
