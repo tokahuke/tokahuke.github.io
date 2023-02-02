@@ -159,34 +159,24 @@ on your side. Ryan makes that bridge while keeping the user's code short and
 maintanable.</p>
 <p>So, without further ado, shall we begin?</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-ryan"><a class="header" href="#getting-ryan">Getting Ryan</a></h1>
-<p>There are plenty of different ways to get Ryan. It really depends on what your setup is, since Ryan is designed to be embedded in larger applications, although it also works smootly as a standalone application. There are threrefore, two things that we refer to as Ryan:</p>
+<p>There are plenty of different ways to get Ryan. It really depends on what your setup is, since Ryan is designed to be embedded in larger applications, although it also works smoothly as a standalone application. There are therefore, two things that we refer to as Ryan:</p>
 <ol>
 <li>The Ryan CLI: a program that you install in your computer. You pass a <code>.ryan</code> in and get <code>.json</code> out. </li>
 <li>The Ryan library: a dependency you add to you project that takes a <code>.ryan</code> from somewhere and spits out data that your programming environment can understand.</li>
 </ol>
 <p>Depending on your usecase, you might need to install one of the above. Probably most people will want to install both.</p>
 <h2 id="getting-the-ryan-cli"><a class="header" href="#getting-the-ryan-cli">Getting the Ryan CLI</a></h2>
-<h3 id="windows"><a class="header" href="#windows">Windows</a></h3>
-<p>Go to the <a href="https://github.com/tokahuke/ryan/releases">Ryan repository</a> and download the <code>.exe.zip</code> files for the lastest release in your computer. Unzip it and move it to somewhere nice. Don't forget to rename the file to <code>ryan.exe</code> to keep things simple.</p>
-<h3 id="linux"><a class="header" href="#linux">Linux</a></h3>
-<h4 id="first-option"><a class="header" href="#first-option">First option</a></h4>
-<p>Go to the <a href="https://github.com/tokahuke/ryan/releases">Ryan repository</a> and download the <code>.zip</code> files for the lastest release in your computer. Unzip it, rename the binary to <code>ryan</code> and move it to <code>/usr/loca/bin</code> (you will need <code>sudo</code>).</p>
-<blockquote>
-<p>Note: a one-line installer is in the backlog.</p>
-</blockquote>
-<h3 id="if-you-have-cargo"><a class="header" href="#if-you-have-cargo">If you have Cargo</a></h3>
+<h3 id="one-liner-linux-macos"><a class="header" href="#one-liner-linux-macos">One-liner (Linux, MacOS)</a></h3>
+<p>Copy and paste the following command in your favorite console:</p>
+<pre><code class="language-sh">curl -L -Ssf &quot;https://github.com/tokahuke/ryan/tree/main/install/$(uname).sh&quot; | sudo sh
+</code></pre>
+<h3 id="download-the-binary-from-github-linux-macos-windows"><a class="header" href="#download-the-binary-from-github-linux-macos-windows">Download the binary from GitHub (Linux, MacOS, Windows)</a></h3>
+<p>Go to the <a href="https://github.com/tokahuke/ryan/releases/latest">Ryan repository</a> and download the zipped file corresponding to your platform. Unzip it and move it to somewhere nice!</p>
+<h3 id="using-cargo"><a class="header" href="#using-cargo">Using <code>cargo</code></a></h3>
 <p>If you have Cargo, just run:</p>
 <pre><code>cargo install ryan-cli
 </code></pre>
 <p>And you are done. You will not even need <code>sudo</code>!</p>
-<h3 id="macos"><a class="header" href="#macos">MacOS</a></h3>
-<p>By now, mac users will have to go through <code>cargo</code> to install the CLI. Just do</p>
-<pre><code>cargo install ryan-cli
-</code></pre>
-<p>And you are done.</p>
-<blockquote>
-<p>Note: a brew formula for Ryan is in the backlog.</p>
-</blockquote>
 <h2 id="getting-the-ryan-library"><a class="header" href="#getting-the-ryan-library">Getting the Ryan library</a></h2>
 <p>Depending on your language, you can install a binding to Ryan from your standard package manager:</p>
 <pre><code>cargo install ryan      # Rust
