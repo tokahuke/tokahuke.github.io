@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/variables-and-patterns.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="art-of-ryan/comprehensions.html"><strong aria-hidden="true">7.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="integrating/the-ryan-cli.html"><strong aria-hidden="true">8.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="integrating/rust.html"><strong aria-hidden="true">9.</strong> Rust</a></li><li class="chapter-item expanded "><a href="integrating/python.html"><strong aria-hidden="true">10.</strong> Python</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="integrating/the-ryan-cli.html"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="integrating/python.html"><strong aria-hidden="true">11.</strong> Python</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -187,6 +187,47 @@ npm install ryan-js     # JavaScript (web)
 </code></pre>
 <p>If a binding is not available to your language, you can always use the Ryan CLI + you favorite JSON parser as a fallback. The Ryan CLI is already thought-out for this kind of programmatic interaction.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hello-jason"><a class="header" href="#hello-jason">Hello... Jason!?</a></h1>
+<blockquote>
+<p>Note: if you are unfamiliar with JSON, you may skip this chapter and go right ahead to the next one. You will still be able to understand what Ryan is all about.</p>
+</blockquote>
+<p>This tutorial is focused on getting you up-to-speed with Ryan as painlessly as possible. Where else then better than a good Hello world, eh?</p>
+<pre><code class="language-ryan">{
+    &quot;words&quot;: [&quot;Hello&quot;, &quot;World!&quot;]
+}
+</code></pre>
+<p>That's right! That is valid Ryan right there. The first thing you should know is that Ryan is a superset of JSON, that same format that grows like weed all over the internet. That is on purpose: Ryan aims to be uncomplicated and familiar. </p>
+<p>On the other hand, we all know that JSON can sometimes be a pain to edit. You can't even write a comment on that damn thing! And don't even get me started on multiline strings... Sometimes, JSON is a victim of its most important virtue: being dead simple.</p>
+<h2 id="simple-amenities"><a class="header" href="#simple-amenities">Simple amenities</a></h2>
+<p>Ryan, however, can be a bit more complex, trading performance for convenience. In fact, Ryan was made more for humans than for machines. Therefore, in Ryan, you can have stuff like this:</p>
+<pre><code class="language-ryan">// A comment!
+</code></pre>
+<p>Shocking, I know. Ryan only supports line comments, which start on a <code>//</code> and ends on a line break. There are no block comments, but why would you want one of those anyway? </p>
+<p>Oh!, by the way... that last line of Ryan was totally valid. I know it's a bit of a side note, but</p>
+<pre><code class="language-ryan">
+</code></pre>
+<p>is a full ryan program in its own right and evaluates to <code>null</code>. </p>
+<p>On the same note, much stuff that you are used to have from JavaScript you can also have here:</p>
+<pre><code class="language-ryan">[
+    &quot;forgiving&quot;,
+    &quot;commas&quot;, 
+]
+</code></pre>
+<p>and</p>
+<pre><code class="language-ryan">{
+    naked: 1,
+    dictionary: 2,
+    keys: 3,
+}
+</code></pre>
+<p>And finally, for everyone's delight, </p>
+<pre><code>&quot;multi
+line
+strings
+are allowed!&quot;
+</code></pre>
+<p>... given that they are valid UTF8. However, only double-quoted strings are possible. How could you possibly like those single-quotes aberrations?</p>
+<h2 id="conclusion-to-the-introduction"><a class="header" href="#conclusion-to-the-introduction">Conclusion to the introduction</a></h2>
+<p>You might be asking yourself about all the cosmetics and nice gadgets from the last section: &quot;so what? JSON5 offers basically the same thing and YAML does that and <em>tons</em> more. What is the upside here?&quot; Well, Ryan is capable of much more than these simple tricks and that is what we are going to explore in the following chapters. However, if all you got from this book is that Ryan is a nicer JSON, well... that's a start (and <em>definitely</em> a legitimate use for Ryan).</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="simple-types-and-simple-operations"><a class="header" href="#simple-types-and-simple-operations">Simple types and simple operations</a></h1>
 <h2 id="numbers"><a class="header" href="#numbers">Numbers</a></h2>
 <p>The simplest type you can think about in Ryan is a number. Numbers come in two flavors: <em>integers</em> and <em>floats</em>. Both types are treated diffently, although interchangibly via type coercion (more on that later). Here are some examples of numbers:</p>
@@ -270,9 +311,141 @@ null &gt; 0                                // error!
 3 ? 2       // -&gt; 3
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="variables"><a class="header" href="#variables">Variables</a></h1>
+<p>If you have ever been to a maths class, you know what a variable is. It's an identifier that refers to a value. For example,</p>
+<pre><code>x = 1
+</code></pre>
+<p>In this case, <code>x</code> is one. However, it can get more complicated than that</p>
+<pre><code>x = 2 + 3 * 4
+</code></pre>
+<p>The power of variables really shine when you have to use the result of a computation in more than one place. In this case, variables are great at saving you a great deal of trouble:</p>
+<pre><code>let x be 2 + 3 * 4 ...
+
+... then this:
+x * x + 2 * x + 3
+... is much better than this:
+(2 + 3 * 4) * (2 + 3 * 4) + 2 * (2 + 3 * 4) + 3
+</code></pre>
+<p>Like most programming languages, Ryan leverages variables to make referring to <em>results of expressions</em> (the same ones we have encountered last chapter) a much more delightful thing than hitting Copy+Paste all the time.</p>
+<h2 id="simple-bindings"><a class="header" href="#simple-bindings">Simple bindings</a></h2>
+<p>This is how you declare a variable in Ryan:</p>
+<pre><code class="language-ryan">let a_guy = &quot;Ryan&quot;;
+</code></pre>
+<p>What this line says is that <code>a_guy</code> refers to the value <code>&quot;Ryan&quot;</code> from now on. Now, you can start using it to build more complex stuff on top of it:</p>
+<pre><code class="language-ryan">let a_guy = &quot;Ryan&quot;;
+&quot;Hello, &quot; + a_guy + &quot;!&quot;
+</code></pre>
+<p>This will evaluate to the text <code>&quot;Hello, Ryan!&quot;</code>. The construction <code>let ... = ...;</code> is called a <em>variable binding</em>, becaus it binds the value (<code>&quot;Ryan&quot;</code>) to an identifier (<code>a_guy</code>).</p>
+<h2 id="variable-names"><a class="header" href="#variable-names">Variable names</a></h2>
+<p>Variable names in Ryan are represented by text, but not all names are valid. Here are the rules you must follow to create a valid variable name:</p>
+<ul>
+<li>Variable names can only contain the characters:
+<ul>
+<li><code>a-z</code> (lowercase letters)</li>
+<li><code>A-Z</code> (uppercase letters),</li>
+<li><code>0-9</code> (any digit) and...</li>
+<li><code>_</code> (the underscore). </li>
+</ul>
+</li>
+<li>Variable names cannot be in a list of <em>reserved keywords</em>. These are names that are already used for other things in Ryan. Some examples of this you have already found:
+<ul>
+<li>Values like <code>true</code>, <code>false</code> and <code>null</code>.</li>
+<li>Control words like <code>if</code>, <code>then</code>, <code>else</code> and (out newest acquaintance) <code>let</code>.
+The list of words is not big and does not contain many reasonable variable names. Ryan will warn you if have chosen an invalid name. Finding a different one should be an easy task (e.g., append a <code>_</code> to the end of your name).</li>
+</ul>
+</li>
+</ul>
+<p>Of course, even if a variable name is valid, it does not mean that it is a <em>good</em> name. Here are some useful tips when naming your variables:</p>
+<ul>
+<li>Avoid one-letter names, like <code>x</code>, <code>y</code> and <code>i</code>.</li>
+<li>You may use more than one word for variable name. When doing so use <code>snake_case</code> or <code>camelCase</code> (either one is fine). <code>dontjustglueverythingtogetherbecauseitsdifficulttoread</code>.</li>
+</ul>
+<p>The key is to be <em>expressive</em> but to keep it <em>short</em>.</p>
+<h2 id="variables-are-immutable-but-can-be-shadowed"><a class="header" href="#variables-are-immutable-but-can-be-shadowed">Variables are immutable, but can be shadowed</a></h2>
+<p>In Ryan, all values are immutable. That means that there is no way of changing the value after it was assigned to a variable. This is not true in many programming languages. For example, in Python:</p>
+<pre><code class="language-python">x = &quot;abc&quot;
+x = x + &quot;def&quot;
+# x is the _same_ variable, but now is &quot;abcdef&quot;
+</code></pre>
+<p>In Ryan, there is something called <em>shadowing</em>, where you can do something like this:</p>
+<pre><code class="language-ryan">let x = &quot;abc&quot;;
+let x = x + &quot;def&quot;;
+// the second x is a different variable than the first x.
+// you haven't changed `x`; you just recreated it.
+</code></pre>
+<p>In other words:</p>
+<ul>
+<li>In many programming languages, one can assign a value to a variable and then mess around with the value or even change it completely.</li>
+<li>In Ryan, there is no such a thing. When you redeclare a variable, you effectively destroy the old one and create the new one from scratch.
+The difference is subtle, but (sometimes) it matters. If you are new to the mutability-immutability, this might be too abstract to grasp at first, especially if you are relatively new to the programming business. If you don't get it, don't worry: it's not a big deal. There are few points where it <em>really</em> matters and it will be pointed out explicitly.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="not-so-simple-types"><a class="header" href="#not-so-simple-types">Not-so-simple types</a></h1>
+<p><em>Collections</em> are types which are used to aggregate and organize a set of data. Ryan supports two collection types: <em>lists</em> and <em>dictionaries</em> (or maps).</p>
+<h2 id="lists"><a class="header" href="#lists">Lists</a></h2>
+<p>Lists are a collection of values, sequentially ordered. Here are some lists for you:</p>
+<pre><code class="language-ryan">[1, 2, 3]       // Lists are a comma-separated sequence of values between brackets.
+[1, &quot;a&quot;, null]  // You can mix and match the types however you want.
+[]              // An empty list is also a list
+[
+    1,
+    2,
+    3,  // Use forgiving commas for long lists
+]
+</code></pre>
+<p>The two main operations on lists are <em>concatenation</em> (just like with strings) and <em>index accessing</em>. Concatenation is pretty straightforward:</p>
+<pre><code class="language-ryan">[1, 2, 3] + [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]     // -&gt; [1, 2, 3, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+</code></pre>
+<p>Index accessing is also easy: get the n-th element in the list. However, Ryan shares a pet-peeve with many other programming languages: the <em>first</em> position is indexed by the number zero.</p>
+<pre><code>[1, 2, 3][0]        // -&gt; 1
+[1, 2, 3][1]        // -&gt; 2, not 1!
+[1, 2, 3][3]        // error! Tried to access index 3 of list of length 3 
+                    // (3 is the 4th element!!)
+</code></pre>
+<h2 id="dictionaries-or-maps"><a class="header" href="#dictionaries-or-maps">Dictionaries (or maps)</a></h2>
+<p>dictionaries are a collection of values indexed by strings. This name, dictionary, is quite apt in describing what it does. Just like the regular old book, it <em>uniquely</em> associates a word to a value. Here is an example of a Ryan dictionary:</p>
+<pre><code class="language-ryan">{
+    &quot;name&quot;: &quot;Sir Lancelot of Camelot&quot;,
+    &quot;quest&quot;: &quot;to seek the Holly Grail&quot;,
+    &quot;favorite_color&quot;: &quot;blue&quot;
+}
+</code></pre>
+<p>However, the same dictionary is much nicer written this alternative way:</p>
+<pre><code class="language-ryan">{
+    name: &quot;Sir Lancelot of Camelot&quot;,
+    quest: &quot;to seek the Holly Grail&quot;,
+    favorite_color: &quot;blue&quot;,     // use forgiving commas for extra niceness
+}
+</code></pre>
+<p>Whenever the <em>key</em> of a dictionary could be a <em>valid variable name</em>, you can omit the double quotes of the string. This doesn't change the value of dictionary (both examples correspond to the same thing); this is just <em>syntax sugar</em>: an nicer way of expressing the same thing.</p>
+<p>Dictionaries have other few different tricks on their sleeves. For example, it is <em>syntactically valid</em> to repeat a key in the dictionary:</p>
+<pre><code class="language-ryan">{
+    a: 1,
+    a: 2,
+}
+</code></pre>
+<p>However, only the <em>last</em> occurrence of the same key will count to the final result. The above dictionary evaluates to <code>{ a: 2 }</code>. </p>
+<p>You can also specify an <em><code>if</code> guard</em> at the end of each key, in order to make its insertion in the dictionary optional, like so:</p>
+<pre><code class="language-ryan">{
+    a: 1,
+    b: 2 if &quot;abc&quot; == &quot;def&quot;,     // wrong!
+    c: 3 if 1 == 1,             // quite true...
+}
+</code></pre>
+<p>This will evaluate to <code>{ &quot;a&quot;: 1, &quot;c&quot;: 3 }</code>.</p>
+<p>Lastly, just like with lists, you can concatenate dictionaries and index them in the very same fashion as you would do a list:</p>
+<pre><code class="language-ryan">let x = { a: 1, b: 2, c: 3 };
+let y = { d: 4, e: 5, f: 6 };
+x + y       // -&gt; { a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }
+x[&quot;a&quot;]      // -&gt; 1
+x[&quot;d&quot;]      // error! Key &quot;d&quot; missing in map
+</code></pre>
+<p>However, following the same idea as before, if a certain key could be a <em>valid variable name</em>, one can also use the shorter <code>.</code> operator to index dictionaries:</p>
+<pre><code class="language-ryan">let x = { a: 1, b: 2, c: 3 };
+x.a     // -&gt; 1
+a.d     // error! Key &quot;d&quot; missing in map
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="importing-things"><a class="header" href="#importing-things">Importing things</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pattern-matching"><a class="header" href="#pattern-matching">Pattern matching</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="types"><a class="header" href="#types">Types</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comprehensions"><a class="header" href="#comprehensions">Comprehensions</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-ryan-cli"><a class="header" href="#the-ryan-cli">The Ryan CLI</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust"><a class="header" href="#rust">Rust</a></h1>

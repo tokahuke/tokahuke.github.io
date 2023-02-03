@@ -80,7 +80,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="../art-of-ryan/hello-json.html" class="active"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/variables-and-patterns.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/comprehensions.html"><strong aria-hidden="true">7.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="../integrating/the-ryan-cli.html"><strong aria-hidden="true">8.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="../integrating/rust.html"><strong aria-hidden="true">9.</strong> Rust</a></li><li class="chapter-item expanded "><a href="../integrating/python.html"><strong aria-hidden="true">10.</strong> Python</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="../art-of-ryan/hello-json.html" class="active"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="../types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="../integrating/the-ryan-cli.html"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="../integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="../integrating/python.html"><strong aria-hidden="true">11.</strong> Python</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,6 +142,47 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="hello-jason"><a class="header" href="#hello-jason">Hello... Jason!?</a></h1>
+<blockquote>
+<p>Note: if you are unfamiliar with JSON, you may skip this chapter and go right ahead to the next one. You will still be able to understand what Ryan is all about.</p>
+</blockquote>
+<p>This tutorial is focused on getting you up-to-speed with Ryan as painlessly as possible. Where else then better than a good Hello world, eh?</p>
+<pre><code class="language-ryan">{
+    &quot;words&quot;: [&quot;Hello&quot;, &quot;World!&quot;]
+}
+</code></pre>
+<p>That's right! That is valid Ryan right there. The first thing you should know is that Ryan is a superset of JSON, that same format that grows like weed all over the internet. That is on purpose: Ryan aims to be uncomplicated and familiar. </p>
+<p>On the other hand, we all know that JSON can sometimes be a pain to edit. You can't even write a comment on that damn thing! And don't even get me started on multiline strings... Sometimes, JSON is a victim of its most important virtue: being dead simple.</p>
+<h2 id="simple-amenities"><a class="header" href="#simple-amenities">Simple amenities</a></h2>
+<p>Ryan, however, can be a bit more complex, trading performance for convenience. In fact, Ryan was made more for humans than for machines. Therefore, in Ryan, you can have stuff like this:</p>
+<pre><code class="language-ryan">// A comment!
+</code></pre>
+<p>Shocking, I know. Ryan only supports line comments, which start on a <code>//</code> and ends on a line break. There are no block comments, but why would you want one of those anyway? </p>
+<p>Oh!, by the way... that last line of Ryan was totally valid. I know it's a bit of a side note, but</p>
+<pre><code class="language-ryan">
+</code></pre>
+<p>is a full ryan program in its own right and evaluates to <code>null</code>. </p>
+<p>On the same note, much stuff that you are used to have from JavaScript you can also have here:</p>
+<pre><code class="language-ryan">[
+    &quot;forgiving&quot;,
+    &quot;commas&quot;, 
+]
+</code></pre>
+<p>and</p>
+<pre><code class="language-ryan">{
+    naked: 1,
+    dictionary: 2,
+    keys: 3,
+}
+</code></pre>
+<p>And finally, for everyone's delight, </p>
+<pre><code>&quot;multi
+line
+strings
+are allowed!&quot;
+</code></pre>
+<p>... given that they are valid UTF8. However, only double-quoted strings are possible. How could you possibly like those single-quotes aberrations?</p>
+<h2 id="conclusion-to-the-introduction"><a class="header" href="#conclusion-to-the-introduction">Conclusion to the introduction</a></h2>
+<p>You might be asking yourself about all the cosmetics and nice gadgets from the last section: &quot;so what? JSON5 offers basically the same thing and YAML does that and <em>tons</em> more. What is the upside here?&quot; Well, Ryan is capable of much more than these simple tricks and that is what we are going to explore in the following chapters. However, if all you got from this book is that Ryan is a nicer JSON, well... that's a start (and <em>definitely</em> a legitimate use for Ryan).</p>
 
                     </main>
 
