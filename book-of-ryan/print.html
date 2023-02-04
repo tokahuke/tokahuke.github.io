@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="integrating/the-ryan-cli.html"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="integrating/python.html"><strong aria-hidden="true">11.</strong> Python</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="integrating/the-ryan-cli.html"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="integrating/python.html"><strong aria-hidden="true">11.</strong> Python</a></li><li class="chapter-item expanded "><a href="integrating/javascript.html"><strong aria-hidden="true">12.</strong> JavaScript</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="reference/built-ins.html"><strong aria-hidden="true">13.</strong> List of built-ins</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -164,7 +164,7 @@ maintanable.</p>
 <li>The Ryan CLI: a program that you install in your computer. You pass a <code>.ryan</code> in and get <code>.json</code> out. </li>
 <li>The Ryan library: a dependency you add to you project that takes a <code>.ryan</code> from somewhere and spits out data that your programming environment can understand.</li>
 </ol>
-<p>Depending on your usecase, you might need to install one of the above. Probably most people will want to install both.</p>
+<p>Depending on your use-case, you might need to install one of the above. Probably most people will want to install both.</p>
 <h2 id="getting-the-ryan-cli"><a class="header" href="#getting-the-ryan-cli">Getting the Ryan CLI</a></h2>
 <h3 id="one-liner-linux-macos"><a class="header" href="#one-liner-linux-macos">One-liner (Linux, MacOS)</a></h3>
 <p>Copy and paste the following command in your favorite console:</p>
@@ -450,6 +450,109 @@ a.d     // error! Key &quot;d&quot; missing in map
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-ryan-cli"><a class="header" href="#the-ryan-cli">The Ryan CLI</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust"><a class="header" href="#rust">Rust</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="python"><a class="header" href="#python">Python</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">JavaScript</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="list-of-built-ins"><a class="header" href="#list-of-built-ins">List of built-ins</a></h1>
+<blockquote>
+<p>Note: some of these built-ins will be released in the 0.1.1 (or 0.2.0) version of Ryan.</p>
+</blockquote>
+<table style="width: 100%">
+    <tr>
+        <td style="min-width: 30%"><strong>Pattern</strong></td>
+        <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+        <td><code>fmt x: any</code></td>
+        <td>Transform any object into a string that represents it. Use this pattern to interpolate non-string values with string values in order to create more complex displays, e.g., <code>"there are " + fmt 4 + " lights"</code>. Without the <code>fmt</code>, you will get a type error.</td>
+    </tr>
+    <tr>
+        <td><code>len x: [any] | {any} | text</code></td>
+        <td>Gets the length of a list, a dictionary or a string.</td>
+    </tr>
+    <tr>
+        <td><code>range [start, end]</code></td>
+        <td>Generates a list of consecutive integer numbers from <code>start</code> to <code>end - 1</code>.</td>
+    </tr>
+    <tr>
+        <td><code>zip [left, right]</code></td>
+        <td>Iterates through both iterables at the same time, returning a list with the pairs of elements in the same position. For example, <code>zip [[1, 2, 3], [4, 5, 6]]</code> yields <code>[[1, 4], [2, 5], [3, 6]]</code>.</td>
+    </tr>
+    <tr>
+        <td><code>enumerate x: [any] | {any}</code></td>
+        <td>Generates a list of indexed value for a list. For example, <code>enumerate ["a", "b", "c"]</code> yields <code>[[1, "a"], [2, "b"], [3, "c"]]</code>.</td>
+    </tr>
+    <tr>
+        <td><code>sum x: [number]</code></td>
+        <td>Returns the sum of all numbers in a list.</td>
+    </tr>
+    <tr>
+        <td><code>max x: [number]</code></td>
+        <td>Returns the maximum of all numbers in a list.</td>
+    </tr>
+    <tr>
+        <td><code>min x: [number]</code></td>
+        <td>Returns the minimum of all numbers in a list.</td>
+    </tr>
+     <tr>
+        <td><code>all x: [bool]</code></td>
+        <td>Returns <code>true</code> if there is no <code>false</code> in the list.</td>
+    </tr>
+     <tr>
+        <td><code>any x: [bool]</code></td>
+        <td>Returns <code>false</code> if there is no <code>true</code> in the list.</td>
+    </tr>
+    <tr>
+        <td><code>sort x: [number] | [text]</code></td>
+        <td>Returns a sorted version of a list.</td>
+    </tr>
+    <tr>
+        <td><code>keys x: {any}</code></td>
+        <td>Returns the a list of the keys in the dictionary.</td>
+    </tr>
+    <tr>
+        <td><code>values x: {any}</code></td>
+        <td>Returns the a list of the values in the dictionary.</td>
+    </tr>
+    <tr>
+        <td><code>split sep: text</code></td>
+        <td>Returns the a pattern that splits a text by the supplied separator. Use it like so: <code>( split "," ) "a,b,c"</code> = <code>["a", "b", "c"]</code></td>
+    </tr>
+    <tr>
+        <td><code>join sep: text</code></td>
+        <td>Returns the a pattern that joins a list of text with the supplied separator. Use it like so: <code>( join "," ) ["a", "b", "c"]</code> = <code>"a,b,c"</code></td>
+    </tr>
+    <tr>
+        <td><code>trim x: text</code></td>
+        <td>Returns a text with all <em>leading</em> and <em>trailing</em> whitespaces removed.</td>
+    </tr>
+    <tr>
+        <td><code>trim_start x: text</code></td>
+        <td>Returns a text with all <em>leading</em> whitespaces removed.</td>
+    </tr>
+    <tr>
+        <td><code>trim_end x: text</code></td>
+        <td>Returns a text with all <em>trailing</em> whitespaces removed.</td>
+    </tr>
+    <tr>
+        <td><code>starts_with prefix: text</code></td>
+        <td>Returns a pattern that tests if a text starts with the given prefix. Use it like so: <code>( starts_with "foo" ) "foobar" </code> = <code>true</code></td>
+    </tr>
+    <tr>
+        <td><code>ends_with postfix: text</code></td>
+        <td>Returns a pattern that tests if a text ends with the given postfix. Use it like so: <code>( ends_with "bar" ) "foobar" </code> = <code>true</code></td>
+    </tr>
+    <tr>
+        <td><code>lowercase x: text</code></td>
+        <td>Makes all letters lowercase.</td>
+    </tr>
+    <tr>
+        <td><code>uppercase x: text</code></td>
+        <td>Makes all letters uppercase.</td>
+    </tr>
+    <tr>
+        <td><code>replace [find: text, subst: text]</code></td>
+        <td>Returns a pattern that substitutes all occurrences of the text <code>find</code> with the text <code>subst</code>. Use it like so: <code>( replace [ "five", "four" ] ) "There are five lights" </code> = <code>"There are four lights"</code></td>
+    </tr>
+</table>
 
                     </main>
 
