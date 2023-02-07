@@ -80,7 +80,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="../art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="../types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="../integrating/the-ryan-cli.html" class="active"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="../integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="../integrating/python.html"><strong aria-hidden="true">11.</strong> Python</a></li><li class="chapter-item expanded "><a href="../integrating/javascript.html"><strong aria-hidden="true">12.</strong> JavaScript</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="../reference/built-ins.html"><strong aria-hidden="true">13.</strong> List of built-ins</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="../art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="../integrating/the-ryan-cli.html" class="active"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="../integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="../integrating/python.html"><strong aria-hidden="true">11.</strong> Python</a></li><li class="chapter-item expanded "><a href="../integrating/javascript.html"><strong aria-hidden="true">12.</strong> JavaScript</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="../reference/built-ins.html"><strong aria-hidden="true">13.</strong> List of built-ins</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,6 +142,36 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="the-ryan-cli"><a class="header" href="#the-ryan-cli">The Ryan CLI</a></h1>
+<p>The simplest way of interfacing with Ryan is through the Ryan CLI. The CLI is an app that executes your Ryan programs and spits out the final computed JSON either to a file or to the terminal. Since the CLI is a program that you can download in most computers, you can use it independently of your programming environment. In fact, if your language does not support native integration, don't fret: the CLI is purpose built for integration with other programs and applications. </p>
+<h2 id="simple-usage"><a class="header" href="#simple-usage">Simple usage</a></h2>
+<p>Evaluating a Ryan program is as simple as writing:</p>
+<pre><code class="language-sh">ryan my_program.ryan
+</code></pre>
+<p>This will execute a file <code>my_program.ryan</code>, stored in the current working directory, and print the returned JSON on the screen, with indentations, pretty colors and other niceties. Else, it will print an error message on the screen, saying, more or less cryptically, what is wrong with your code. In case the code executes to valid JSON, the <em>return status</em> will be <code>0</code>, else, if there is any problem, the <em>return status</em> will be non-zero (the actual value depends on the error). This is in line with all well behaved programs and your computer will have no problem understanding it.</p>
+<p>If you wish to save the calculated value to a file, just use the <code>&gt;</code> operator:</p>
+<pre><code class="language-sh">ryan my_program.ryan &gt; output.json
+</code></pre>
+<p>In the same vein, you can set environment variables as usual, which (for Linux and MacOS) is:</p>
+<pre><code class="language-sh">LIGHTS=4 SHAKA=&quot;when the walls fell&quot; ryan py_program.ryan
+</code></pre>
+<p>Or...</p>
+<pre><code class="language-sh">export LIGHTS=4
+export SHAKA=&quot;when the walls fell&quot;
+ryan py_program.ryan
+</code></pre>
+<h2 id="getting-help"><a class="header" href="#getting-help">Getting help</a></h2>
+<p>If you want to dig deeper into the CLI, you can use the <code>--help</code> command, like so:</p>
+<pre><code class="language-sh">ryan --help
+</code></pre>
+<p>This will print useful information on the available commands and options along with the current version of Ryan that you are using.</p>
+<h2 id="integrating-into-your-program"><a class="header" href="#integrating-into-your-program">Integrating into your program</a></h2>
+<p>If your language does not support Ryan natively yet, or if you don't wish to use the existing native support, you can use the Ryan CLI to generate the final JSON for you. All you need to do is:</p>
+<ul>
+<li>Spawn a subprocess <code>ryan &lt;file&gt;</code> and <em>capture</em> its output, more specifically, its <code>stdout</code>.</li>
+<li>Check if the return status is <code>0</code>. This will indicate if any error happened.</li>
+<li>Decode de output using you languages support for JSON. The output is guaranteed to be valid.</li>
+</ul>
+<p>All these steps are standard to most, if not all, modern programming languages and you should be able to easily implement them without any external library or resources.</p>
 
                     </main>
 

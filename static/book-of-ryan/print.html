@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="integrating/the-ryan-cli.html"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="integrating/python.html"><strong aria-hidden="true">11.</strong> Python</a></li><li class="chapter-item expanded "><a href="integrating/javascript.html"><strong aria-hidden="true">12.</strong> JavaScript</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="reference/built-ins.html"><strong aria-hidden="true">13.</strong> List of built-ins</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="art-of-ryan/types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="integrating/the-ryan-cli.html"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="integrating/python.html"><strong aria-hidden="true">11.</strong> Python</a></li><li class="chapter-item expanded "><a href="integrating/javascript.html"><strong aria-hidden="true">12.</strong> JavaScript</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="reference/built-ins.html"><strong aria-hidden="true">13.</strong> List of built-ins</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -603,10 +603,139 @@ foo 1   // -&gt; [1]
 <p>As you can see, the <em>captured</em> version of <code>foo</code> is different from the version we called in the end. Only the alternatives that existed up to the point of the pattern definition are captured.</p>
 <p>Even though recursion is a nice clever trick without which we could not have computers as we know them, it would make Ryan too general for what it was initially conceived: make nice configuration files. It's not expected that people create enormously complex and sneaky algorithms in Ryan. Therefore, to force keeping things simple, no recursion allowed!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="types"><a class="header" href="#types">Types</a></h1>
+<p>Up to now, we have talked about different types of values in Ryan: integers, boolean, string, dictionaries, etc... All these value types have their own representation in Ryan. Even though Ryan is not a <em>statically typed</em> language, you can use types (and expressions over types) to add extra checking to your Ryan code, ensuring that it runs correctly. Furthermore, you can use <em>type guards</em> to further refine patterns, either making them more strict or also allowing them to react differently for different types of data (also known as <em>polymorphism</em>). In this chapter, we will explore what Ryan can offer you in terms of typing.</p>
+<h2 id="primitive-types"><a class="header" href="#primitive-types">Primitive types</a></h2>
+<p>These are the primitive types in Ryan (you have encountered all them before; we are just giving them Ryan names):</p>
+<ul>
+<li><code>bool</code>: booleans; can only be <code>true</code> or <code>false</code>.</li>
+<li><code>int</code>: an integer, like <code>123</code> or <code>-4</code>, but <em>not</em> fractional numbers such as <code>1.2</code>.</li>
+<li><code>float</code>: a floating point like <code>1.23</code> or <code>6e23</code>. This also includes <code>1.0</code>, which, although integer, is <em>stored</em> and <em>processed</em> as a float.</li>
+<li><code>number</code>: <code>int</code> or <code>float</code>. Includes <code>123</code>, <code>1</code>, <code>1.0</code> and all other numerical stuff.</li>
+<li><code>text</code>: strings of text, such as <code>&quot;Ryan&quot;</code>.</li>
+<li><code>null</code>: the value <code>null</code>. Only <code>null</code> is of type <code>null</code>.</li>
+<li><code>any</code>: anything goes!</li>
+</ul>
+<h2 id="composite-types"><a class="header" href="#composite-types">Composite types</a></h2>
+<p>With lists and dictionaries, Ryan gives you a bit more of flexibility than ony a set of flavours. The most simple types are &quot;collections of the same kind of stuff&quot;:</p>
+<ul>
+<li><code>[T]</code> (where <code>T</code> is another type): a list where <em>all</em> elements are of type <code>T</code>. E.g., <code>[int]</code> is &quot;a list of integer numbers&quot;.</li>
+<li><code>{T}</code> (where <code>T</code> is another type): a dictionary where <em>all</em> values are of type <code>T</code>. E.g., <code>{text}</code> is &quot;a dictionary where the values are text&quot;.</li>
+<li><code>?T</code> (where <code>T</code> is another type): either something of type <code>T</code> or <code>null</code>. This is called an <em>optional</em> type. E.g., <code>?float</code> is &quot;either a float number or 'nothing', i.e., <code>null</code>&quot;.</li>
+</ul>
+<p>However, in a manner similar to patterns, you can also specify the nature of the elements:</p>
+<ul>
+<li><code>[A, B, C]</code> (where <code>A</code>, <code>B</code> and <code>C</code> are other types): a list of <em>exactly</em> the specified types (also called a tuple). E.g., <code>[int, bool]</code> is &quot;a list of two elements where the first is an integer and the other is a boolean.</li>
+<li><code>{a: A, &quot;b&quot;: B}</code> (where <code>A</code> and <code>B</code> are other types): a dictionary with <em>exactly</em> the specified keys whose values correspond to the specified types. E.g., <code>{a: int, b: bool}</code> is &quot;a dictionary with exactly the <code>&quot;a&quot;</code> and <code>&quot;b&quot;</code> keys where the value for <code>&quot;a&quot;</code> is an integer and the value for <code>&quot;b&quot;</code> is a boolean.</li>
+<li><code>{a: A, &quot;b&quot;: B, ..}</code> (where <code>A</code> and <code>B</code> are other types): a dictionary with <em>at least</em> the specified keys whose values correspond to the specified types. E.g., <code>{a: int, b: bool}</code> is &quot;a dictionary with <em>at least</em> the <code>&quot;a&quot;</code> and <code>&quot;b&quot;</code> keys where the value for <code>&quot;a&quot;</code> is an integer and the value for <code>&quot;b&quot;</code> is a boolean.</li>
+</ul>
+<h2 id="alternative-types"><a class="header" href="#alternative-types">Alternative types</a></h2>
+<p>In addition to the types we have already seen, you can further compose types with the alternative operator <code>|</code>.  The expression <code>A | B</code> means &quot;something that can be either of type <code>A</code> or of type <code>B</code>&quot;. In fact, we have already found two <em>syntax sugars</em> for this operation in the previous sections:</p>
+<ul>
+<li><code>number</code> is the same thing as <code>int | float</code>.</li>
+<li><code>?T</code> is the same thing as <code>T | null</code>.</li>
+</ul>
+<p>However, you can create your own alternative types, e.g.:</p>
+<ul>
+<li><code>[int | text]</code>: a list where the elements can be either integer or text.</li>
+<li><code>int | {bool}</code>: an integer or a dictionary of booleans.</li>
+</ul>
+<h2 id="type-guards"><a class="header" href="#type-guards">Type guards</a></h2>
+<p>Type guards are an element of the Ryan pattern matching system that will only accept the pattern if, when binding a variable to a value, the value is of the specified type. Type guards are defined with <code>:</code>, like so:</p>
+<pre><code class="language-ryan">let x: int = 1;     // Success! `x` will be equal to 1
+let x: int = &quot;1&quot;;   // Error! Expected an integer, got text.
+</code></pre>
+<p>Every time you declare a new variable in a pattern match, you can define an optional type guard. If none is provided, it's assumed that the type is <code>any</code>, i.e., anything goes.</p>
+<p>Things get fun when you can bring <em>polymorphism</em> to your pattern matches by powering type guards with <em>alternative patterns</em>:</p>
+<pre><code class="language-ryan">let foo x: int = &quot;I am an integer: &quot; + fmt x;
+let foo x: float = &quot;I am a float: &quot; + fmt x;
+[foo 1, foo 1.0]        // -&gt; [&quot;I am an integer: 1&quot;, &quot;I am a float: 1&quot;]
+</code></pre>
+<p>It's recommended that you use type guards wherever possible. It helps keeping your code more <em>explicit</em> on what is going on. Besides, it is one extra way to check the data your program is receiving. For example, suppose you want to set a debug level for your program, which is a number, like:</p>
+<ol>
+<li>Only log errors</li>
+<li>Log errors and high-level information</li>
+<li>Log every small detail in the code execution (also known as verbose).
+You can validate the input from an environment variable, like so:</li>
+</ol>
+<pre><code class="language-ryan">let debug_level: int = import &quot;env:DEBUG_LEVEL&quot;;
+</code></pre>
+<p>This disallows people from passing <code>DEBUG_LEVEL=off</code> to your program and get a valid configuration, which could save you lots of pain down the line.</p>
+<h2 id="type-aliases"><a class="header" href="#type-aliases">Type aliases</a></h2>
+<p>Finding yourself writing the same long type over and over again? Fear not! Ryan supports <em>type aliases</em>. Type aliases are variable bindings that associate a variable to a given type. These are a bit different from the regular bindings in which they do <em>not</em> allow destructuring with patterns and they must start with the <code>type</code> keyword, like so:</p>
+<pre><code class="language-ryan">type X = { a: int, very, text, long: {int}, type_expression: null };
+</code></pre>
+<p>Using regular <code>let</code> biding wont work, because in Ryan type expression are different from regular value expression (and they don't mix!):</p>
+<pre><code class="language-ryan">let X = int;    // -&gt; error! Expected expression block, but got a type :(...
+</code></pre>
+<p>After you have defined a type alias, you can use it normally as if it were any other type:</p>
+<pre><code class="language-ryan">type X = int;
+let x: X = 1;   // -&gt; ok!
+</code></pre>
+<p>Remember that these are only type <em>aliases</em>. Type aliases do not declare a new type. Therefore, a same variable can conform to many different type aliases at the same type.</p>
+<h2 id="types-are-not-representable"><a class="header" href="#types-are-not-representable">Types are not representable</a></h2>
+<p>As you can expect, types have no equivalent in JSON. Therefore, even though types are values, if you ever sneak a Ryan type into a value to be represented in JSON, you will get a &quot;not representable&quot; error. By now, the only way to trigger this error is through the misuse of type aliases:</p>
+<pre><code class="language-ryan">type X = int;
+{
+    a_type: X,      // -&gt; Unrepresentable value: int
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comprehensions"><a class="header" href="#comprehensions">Comprehensions</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-ryan-cli"><a class="header" href="#the-ryan-cli">The Ryan CLI</a></h1>
+<p>The simplest way of interfacing with Ryan is through the Ryan CLI. The CLI is an app that executes your Ryan programs and spits out the final computed JSON either to a file or to the terminal. Since the CLI is a program that you can download in most computers, you can use it independently of your programming environment. In fact, if your language does not support native integration, don't fret: the CLI is purpose built for integration with other programs and applications. </p>
+<h2 id="simple-usage"><a class="header" href="#simple-usage">Simple usage</a></h2>
+<p>Evaluating a Ryan program is as simple as writing:</p>
+<pre><code class="language-sh">ryan my_program.ryan
+</code></pre>
+<p>This will execute a file <code>my_program.ryan</code>, stored in the current working directory, and print the returned JSON on the screen, with indentations, pretty colors and other niceties. Else, it will print an error message on the screen, saying, more or less cryptically, what is wrong with your code. In case the code executes to valid JSON, the <em>return status</em> will be <code>0</code>, else, if there is any problem, the <em>return status</em> will be non-zero (the actual value depends on the error). This is in line with all well behaved programs and your computer will have no problem understanding it.</p>
+<p>If you wish to save the calculated value to a file, just use the <code>&gt;</code> operator:</p>
+<pre><code class="language-sh">ryan my_program.ryan &gt; output.json
+</code></pre>
+<p>In the same vein, you can set environment variables as usual, which (for Linux and MacOS) is:</p>
+<pre><code class="language-sh">LIGHTS=4 SHAKA=&quot;when the walls fell&quot; ryan py_program.ryan
+</code></pre>
+<p>Or...</p>
+<pre><code class="language-sh">export LIGHTS=4
+export SHAKA=&quot;when the walls fell&quot;
+ryan py_program.ryan
+</code></pre>
+<h2 id="getting-help"><a class="header" href="#getting-help">Getting help</a></h2>
+<p>If you want to dig deeper into the CLI, you can use the <code>--help</code> command, like so:</p>
+<pre><code class="language-sh">ryan --help
+</code></pre>
+<p>This will print useful information on the available commands and options along with the current version of Ryan that you are using.</p>
+<h2 id="integrating-into-your-program"><a class="header" href="#integrating-into-your-program">Integrating into your program</a></h2>
+<p>If your language does not support Ryan natively yet, or if you don't wish to use the existing native support, you can use the Ryan CLI to generate the final JSON for you. All you need to do is:</p>
+<ul>
+<li>Spawn a subprocess <code>ryan &lt;file&gt;</code> and <em>capture</em> its output, more specifically, its <code>stdout</code>.</li>
+<li>Check if the return status is <code>0</code>. This will indicate if any error happened.</li>
+<li>Decode de output using you languages support for JSON. The output is guaranteed to be valid.</li>
+</ul>
+<p>All these steps are standard to most, if not all, modern programming languages and you should be able to easily implement them without any external library or resources.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust"><a class="header" href="#rust">Rust</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="python"><a class="header" href="#python">Python</a></h1>
+<h2 id="installing-ryan"><a class="header" href="#installing-ryan">Installing <code>ryan</code></a></h2>
+<p>You can install Ryan directly from PyPI using the <code>ryan-lang</code> package:</p>
+<pre><code>pip install ryan-lang
+</code></pre>
+<p>With this command, you will get the <code>ryan</code> Python module at its most recent version installed in your environment.</p>
+<h2 id="using-ryan"><a class="header" href="#using-ryan">Using <code>ryan</code></a></h2>
+<p>To use <code>ryan</code>, you just need to import it and use the <code>from_str</code> method:</p>
+<pre><code class="language-python">import ryan
+
+some_values = ryan.from_str(
+    &quot;&quot;&quot;
+    let x = &quot;a value&quot;;
+    { x, y: &quot;other value&quot; }
+    &quot;&quot;&quot;
+)
+</code></pre>
+<p>Or you can read a JSON value <em>directly</em> from a file using <code>from_path</code>:</p>
+<pre><code class="language-python">import ryan
+
+some_values = ryan.from_path(&quot;some_values.ryan&quot;)
+</code></pre>
+<h3 id="current-limitations"><a class="header" href="#current-limitations">Current limitations</a></h3>
+<p>The python library currently only exposes functions powering basic usage. This means that more advanced features, such as custom native patter matches and custom importers are not supported. However, these are more advanced features that most people will not need to use (and are not even covered in this tutorial). Most likely, the current exposed features will suffice for your use case. This limitation is intended change in a future version of this library.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">JavaScript</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="list-of-built-ins"><a class="header" href="#list-of-built-ins">List of built-ins</a></h1>
 <blockquote>

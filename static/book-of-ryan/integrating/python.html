@@ -80,7 +80,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="../art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="../types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="../integrating/the-ryan-cli.html"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="../integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="../integrating/python.html" class="active"><strong aria-hidden="true">11.</strong> Python</a></li><li class="chapter-item expanded "><a href="../integrating/javascript.html"><strong aria-hidden="true">12.</strong> JavaScript</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="../reference/built-ins.html"><strong aria-hidden="true">13.</strong> List of built-ins</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="../art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="../art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="../integrating/the-ryan-cli.html"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="../integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="../integrating/python.html" class="active"><strong aria-hidden="true">11.</strong> Python</a></li><li class="chapter-item expanded "><a href="../integrating/javascript.html"><strong aria-hidden="true">12.</strong> JavaScript</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="../reference/built-ins.html"><strong aria-hidden="true">13.</strong> List of built-ins</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,6 +142,29 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="python"><a class="header" href="#python">Python</a></h1>
+<h2 id="installing-ryan"><a class="header" href="#installing-ryan">Installing <code>ryan</code></a></h2>
+<p>You can install Ryan directly from PyPI using the <code>ryan-lang</code> package:</p>
+<pre><code>pip install ryan-lang
+</code></pre>
+<p>With this command, you will get the <code>ryan</code> Python module at its most recent version installed in your environment.</p>
+<h2 id="using-ryan"><a class="header" href="#using-ryan">Using <code>ryan</code></a></h2>
+<p>To use <code>ryan</code>, you just need to import it and use the <code>from_str</code> method:</p>
+<pre><code class="language-python">import ryan
+
+some_values = ryan.from_str(
+    &quot;&quot;&quot;
+    let x = &quot;a value&quot;;
+    { x, y: &quot;other value&quot; }
+    &quot;&quot;&quot;
+)
+</code></pre>
+<p>Or you can read a JSON value <em>directly</em> from a file using <code>from_path</code>:</p>
+<pre><code class="language-python">import ryan
+
+some_values = ryan.from_path(&quot;some_values.ryan&quot;)
+</code></pre>
+<h3 id="current-limitations"><a class="header" href="#current-limitations">Current limitations</a></h3>
+<p>The python library currently only exposes functions powering basic usage. This means that more advanced features, such as custom native patter matches and custom importers are not supported. However, these are more advanced features that most people will not need to use (and are not even covered in this tutorial). Most likely, the current exposed features will suffice for your use case. This limitation is intended change in a future version of this library.</p>
 
                     </main>
 
