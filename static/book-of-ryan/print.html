@@ -680,6 +680,51 @@ let x: X = 1;   // -&gt; ok!
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comprehensions"><a class="header" href="#comprehensions">Comprehensions</a></h1>
+<p>Comprehensions are a special kind of list and dictionary syntax that lets you make transformations on collections. This includes mapping and filtering values from these collections. If you are familiar with <em>Python</em> list comprehensions, you will feel right at home, since the syntax is almost identical. If not, think of comprehensions as a controlled form of a <code>for</code> loop that looks like a set definition from mathematics.</p>
+<h2 id="list-comprehensions"><a class="header" href="#list-comprehensions">List comprehensions</a></h2>
+<p>A (basic) list comprehension takes the following form:</p>
+<pre><code class="language-ryan">[&lt;expression&gt; for &lt;pattern&gt; in &lt;expression&gt;]
+</code></pre>
+<p>For example, let's generate a list of even numbers:</p>
+<pre><code class="language-ryan">[2 * i for i in range [1, 10]]
+</code></pre>
+<p>This will evaluate to <code>[2, 4, 6, 8, 10, 12, 14, 16, 18]</code>. The expression <code>range [1, 10]</code> will generate all integer numbers from <code>1</code> to the <em>predecessor</em> of <code>10</code> (i.e., <code>9</code>). If you find this strange, this is the default in most programming languages. Ryan is is not the exception. The comprehension expression binds the variable <code>i</code> to each element from the collection supplied after <code>in</code> and calculates <code>2 * i</code> for each value. </p>
+<p>You can also supply an optional <code>if</code> guard that will filter the elements that will make to the final collection. For example, to get the same result as before, instead of multiplying by <code>2</code>, we could iterate through all numbers and check the ones that are divisible by 2, like so:</p>
+<pre><code class="language-ryan">[i for i in range[1, 20] if i % 2 == 0]
+</code></pre>
+<p>This wil also yield <code>[2, 4, 6, 8, 10, 12, 14, 16, 18]</code> as the output.</p>
+<h2 id="dictionary-comprehensions"><a class="header" href="#dictionary-comprehensions">Dictionary comprehensions</a></h2>
+<p>Dictionary comprehensions are very similar to list comprehensions, the only difference being that you also get to set the keys od the dictionary as part of the comprehension:</p>
+<pre><code class="language-ryan">{&lt;key expression&gt;: &lt;value expression&gt; for &lt;pattern&gt; in &lt;expression&gt;}
+</code></pre>
+<p>So, for example, we could get a mapping from a number to its double, like so:</p>
+<pre><code class="language-ryan">{fmt i: 2 * i for i in range [1, 10]}
+</code></pre>
+<p>This will yield the dictionary <code>{&quot;1&quot;: 2, &quot;2&quot;: 4, &quot;3&quot;: 6, &quot;4&quot;: 8, &quot;5&quot;: 10, &quot;6&quot;: 12, &quot;7&quot;: 14, &quot;8&quot;: 16, &quot;9&quot;: 18}</code>. Similarly to list comprehensions, you can also supply an optional  <code>if</code> guard to filter the values:</p>
+<pre><code class="language-ryan">{ fmt i / 2: i for i in range[1, 20] if i % 2 == 0 }
+</code></pre>
+<p>This will yield the same dictionary as before.</p>
+<h2 id="what-can-go-after-a-for--in"><a class="header" href="#what-can-go-after-a-for--in">What can go after a <code>for ... in</code></a></h2>
+<p>Things that can go after the <code>in</code> keyword (also called iterables) are by now only lists and dictionaries. In the case of dictionaries, the patter in the <code>for</code> will be matched to the tuples of keys and values in the dictionaries, like so:</p>
+<pre><code class="language-ryan">{ y: x for [x, y] in {&quot;a&quot;: &quot;b&quot;, &quot;c&quot;: &quot;d&quot;} }
+</code></pre>
+<p>This will yield the value <code>{&quot;b&quot;: &quot;a&quot;, &quot;c&quot;: &quot;d&quot;}</code> as a result.</p>
+<p>As you can see, there are also some handy patterns that can help you with some usual iterating tasks. We have already encountered <code>range</code>, that returns lists of consecutive numbers, but there are three more useful patterns that always come in handy:</p>
+<ul>
+<li><code>enumerate</code>: returns pairs of the <em>index</em> of an element and the element of the iterable, like so:</li>
+</ul>
+<pre><code class="language-ryan">enumerate [1, 4, 6, 9]      // -&gt; [[0, 1], [1, 4], [2, 6], [3, 9]]
+</code></pre>
+<ul>
+<li><code>zip</code>: walks through a list of iterables in lockstep, like so:</li>
+</ul>
+<pre><code class="language-ryan">zip [[1, 2, 3], [4, 5, 6]]  // -&gt; [[1, 4], [2, 5], [3, 6]]
+</code></pre>
+<ul>
+<li><code>sort</code>: returns a sorted version of a list:</li>
+</ul>
+<pre><code class="language-ryan">sort [1, 4, 3, 2]       // -&gt; [1, 2, 3, 4]
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-ryan-cli"><a class="header" href="#the-ryan-cli">The Ryan CLI</a></h1>
 <p>The simplest way of interfacing with Ryan is through the Ryan CLI. The CLI is an app that executes your Ryan programs and spits out the final computed JSON either to a file or to the terminal. Since the CLI is a program that you can download in most computers, you can use it independently of your programming environment. In fact, if your language does not support native integration, don't fret: the CLI is purpose built for integration with other programs and applications. </p>
 <h2 id="simple-usage"><a class="header" href="#simple-usage">Simple usage</a></h2>
@@ -745,7 +790,8 @@ some_values = ryan.from_path(&quot;some_values.ryan&quot;)
 <p>There are two ways you can use Ryan with JavaScript: you can use Ryan in a Web environment or you can use Ryan with NodeJS in your computer.</p>
 <h2 id="ryan-on-the-web"><a class="header" href="#ryan-on-the-web">Ryan on the Web</a></h2>
 <p>To install Ryan for a Web environment, </p>
-<h2 id="ryan-with-nodejs"><a class="header" href="#ryan-with-nodejs">Ryan with NodeJS.</a></h2>
+<h2 id="ryan-with-nodejs"><a class="header" href="#ryan-with-nodejs">Ryan with NodeJS</a></h2>
+<p>TODO: Nodejs binding are still cookin'</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="list-of-built-ins"><a class="header" href="#list-of-built-ins">List of built-ins</a></h1>
 <blockquote>
 <p>Note: some of these built-ins will be released in the 0.1.1 (or 0.2.0) version of Ryan.</p>
