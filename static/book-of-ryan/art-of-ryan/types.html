@@ -216,7 +216,7 @@ let x: X = 1;   // -&gt; ok!
 <p>As you can expect, types have no equivalent in JSON. Therefore, even though types are values, if you ever sneak a Ryan type into a value to be represented in JSON, you will get a &quot;not representable&quot; error. By now, the only way to trigger this error is through the misuse of type aliases:</p>
 <pre><code class="language-ryan">type X = int;
 {
-    a_type: X,      // -&gt; Unrepresentable value: int
+    a_type: X,      // -&gt; Un-representable value: int
 }
 </code></pre>
 

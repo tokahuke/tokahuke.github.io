@@ -144,15 +144,16 @@
                     <main>
                         <h1 id="simple-types-and-simple-operations"><a class="header" href="#simple-types-and-simple-operations">Simple types and simple operations</a></h1>
 <h2 id="numbers"><a class="header" href="#numbers">Numbers</a></h2>
-<p>The simplest type you can think about in Ryan is a number. Numbers come in two flavors: <em>integers</em> and <em>floats</em>. Both types are treated diffently, although interchangibly via type coercion (more on that later). Here are some examples of numbers:</p>
+<p>The simplest type you can think about in Ryan is a number. Numbers come in two flavors: <em>integers</em> and <em>floats</em>. Both types are treated differently, although interchangeably via type coercion (more on that later). Here are some examples of numbers:</p>
 <pre><code class="language-ryan">123     // an integer
 1.23    // a float
 123.0   // another float, not an integer
 -12     // integers can be negative too
 1e23    // and floats can be written in scientific notation if they are veery big
 1e-42   // ... and also if they are veeery tiny
+1_000.0 // if a number is very big, you can sprinkle `_` around for readability.
 </code></pre>
-<p>If you know other programming languages, this is most probably identical to what you have encoutered before. </p>
+<p>If you know other programming languages, this is most probably identical to what you have encountered before. </p>
 <p>In Ryan, you can write arbitrary numerical expressions mixing and matching floats and integers. When necessary, Ryan will implicitly convert the integer to the corresponding float. This is called type coercion. Here are some example of what you can do:</p>
 <pre><code class="language-ryan">2 + 3           // add integers
 2.0 + 3         // mix and match integers with floats freely
@@ -212,7 +213,7 @@ welcome too&quot;
 <p>Note: <code>fmt</code> is called a native pattern match and will be introduced later.</p>
 </blockquote>
 <h2 id="null"><a class="header" href="#null"><code>null</code></a></h2>
-<p>Lastly, but not least, there is the simplest type of all: null. Null has only one value: <code>null</code> and represents the abscence of something. Null is not a boolean or an integer, so it will not behave like, say <code>false</code> or <code>0</code>. Therefore, all these won't work:</p>
+<p>Lastly, but not least, there is the simplest type of all: null. Null has only one value: <code>null</code> and represents the absence of something. Null is not a boolean or an integer, so it will not behave like, say <code>false</code> or <code>0</code>. Therefore, all these won't work:</p>
 <pre><code class="language-ryan">1 + null                                // error!
 if null then &quot;wrong&quot; else &quot;wronger&quot;     // error!
 not null                                // error!
