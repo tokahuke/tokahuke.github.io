@@ -179,14 +179,21 @@
     favorite_color: &quot;blue&quot;,     // use forgiving commas for extra niceness
 }
 </code></pre>
-<p>Whenever the <em>key</em> of a dictionary could be a <em>valid variable name</em>, you can omit the double quotes of the string. This doesn't change the value of dictionary (both examples correspond to the same thing); this is just <em>syntax sugar</em>: an nicer way of expressing the same thing.</p>
+<p>Whenever the <em>key</em> of a dictionary <strong>could</strong> be a <em>valid variable name</em>, you can omit the double quotes of the string. This doesn't change the value of dictionary (both examples correspond to the same thing); this is just <em>syntax sugar</em>: an nicer way of expressing the same thing.</p>
 <p>Dictionaries have other few different tricks on their sleeves. For example, it is <em>syntactically valid</em> to repeat a key in the dictionary:</p>
 <pre><code class="language-ryan">{
     a: 1,
     a: 2,
 }
 </code></pre>
-<p>However, only the <em>last</em> occurrence of the same key will count to the final result. The above dictionary evaluates to <code>{ a: 2 }</code>. </p>
+<p>However, only the <em>last</em> occurrence of the same key will count to the final result. The above dictionary evaluates to <code>{ a: 2 }</code>. You can also use the name of a variable directly, without the value, if the key coincides with the variable name:</p>
+<pre><code class="language-ryan">let a = 2;
+
+{
+    a,      // ... as opposed to `a: a`
+}
+</code></pre>
+<p>The above will also evaluate to <code>{ a: 2 }</code>.</p>
 <p>You can also specify an <em><code>if</code> guard</em> at the end of each key, in order to make its insertion in the dictionary optional, like so:</p>
 <pre><code class="language-ryan">{
     a: 1,
