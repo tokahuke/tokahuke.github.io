@@ -182,9 +182,10 @@ maintainable.</p>
 <p>And you are done. You will not even need <code>sudo</code>!</p>
 <h2 id="getting-the-ryan-library"><a class="header" href="#getting-the-ryan-library">Getting the Ryan library</a></h2>
 <p>Depending on your language, you can install a binding to Ryan from your standard package manager:</p>
-<pre><code>cargo install ryan      # Rust
-pip install ryan-lang   # Python
-npm install ryan-js     # JavaScript (web)
+<pre><code class="language-bash">cargo install ryan          # Rust
+pip install ryan-lang       # Python
+npm install ryan-lang-web   # JavaScript (web)
+npm install ryan-lang-node  # JavaScript (NodeJS)
 </code></pre>
 <p>If a binding is not available to your language, you can always use the Ryan CLI + you favorite JSON parser as a fallback. The Ryan CLI is already thought-out for this kind of programmatic interaction.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hello-jason"><a class="header" href="#hello-jason">Hello... Jason!?</a></h1>
@@ -799,9 +800,29 @@ some_values = ryan.from_path(&quot;some_values.ryan&quot;)
 <div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">JavaScript</a></h1>
 <p>There are two ways you can use Ryan with JavaScript: you can use Ryan in a Web environment or you can use Ryan with NodeJS in your computer.</p>
 <h2 id="ryan-on-the-web"><a class="header" href="#ryan-on-the-web">Ryan on the Web</a></h2>
-<p>To install Ryan for a Web environment, </p>
+<p>To install Ryan for a Web environment, you will need to integrate it with a bundler, such as WebPack. To do so, just add the <code>ryan-lang-web</code> package to your project:</p>
+<pre><code class="language-bash">npm install ryan-lang-web
+</code></pre>
+<p>From there, you can <code>import</code> Ryan into your project, like so:</p>
+<pre><code class="language-js">import * as ryan from &quot;ryan-lang-web&quot;;
+
+var result = ryan.fromStr(`
+    let x = &quot;a value&quot;;
+    
+    {
+        x,
+        y: &quot;other value&quot; 
+    }
+`);
+
+// result will be `{ &quot;x&quot;: &quot;a value&quot;, &quot;y&quot;: &quot;other value&quot;}`
+</code></pre>
+<p>Since the Web doesn't have a filesystem nor environment variables, the import system for Ryan works differently in the browser than in other environments. Basically, if nothing is set, Ryan will run in <em>hermetic</em> mode, i.e. with all imports disabled. However, a list of imports <em>can</em> also be easily configured. For more information, see the <a href="https://www.npmjs.com/package/ryan-lang-web">package homepage</a> in the NpmJS.org website.</p>
 <h2 id="ryan-with-nodejs"><a class="header" href="#ryan-with-nodejs">Ryan with NodeJS</a></h2>
-<p>TODO: Nodejs binding are still cookin'</p>
+<p>By now, Ryan for NodeJS is a direct port from the Ryan for the Web package, via the magic of WASM. To add Ryan to your NodeJS project, just use npm:</p>
+<pre><code class="language-bash">npm install ryan-lang-node
+</code></pre>
+<p>Since this is a direct port, this package works just like described in the last section. Unfortunately, this includes the fact that Ryan for NodeJS does not understands the filesystem or environment variables. This is a limitation that will be resolved in a future release, hopefully sooner than later. This will entail rewriting as a proper native NodeJS extension, running native code, as opposed to running WASM.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="list-of-built-ins"><a class="header" href="#list-of-built-ins">List of built-ins</a></h1>
 <!-- > Note: some of these built-ins will be released in the 0.1.1 (or 0.2.0) version of Ryan. -->
 <table style="width: 100%">
