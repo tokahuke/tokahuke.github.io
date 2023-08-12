@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... Jason!?</a></li><li class="chapter-item expanded "><a href="art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="art-of-ryan/types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="integrating/the-ryan-cli.html"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="integrating/python.html"><strong aria-hidden="true">11.</strong> Python</a></li><li class="chapter-item expanded "><a href="integrating/javascript.html"><strong aria-hidden="true">12.</strong> JavaScript</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="reference/built-ins.html"><strong aria-hidden="true">13.</strong> List of built-ins</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="getting-ryan.html">Getting Ryan</a></li><li class="chapter-item expanded affix "><li class="part-title">The Art of Ryan</li><li class="chapter-item expanded "><a href="art-of-ryan/hello-json.html"><strong aria-hidden="true">1.</strong> Hello... JSON!?</a></li><li class="chapter-item expanded "><a href="art-of-ryan/simple-types.html"><strong aria-hidden="true">2.</strong> Simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/variables.html"><strong aria-hidden="true">3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="art-of-ryan/not-so-simple-types.html"><strong aria-hidden="true">4.</strong> Not-so-simple types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/importing.html"><strong aria-hidden="true">5.</strong> Importing things</a></li><li class="chapter-item expanded "><a href="art-of-ryan/pattern-matching.html"><strong aria-hidden="true">6.</strong> Pattern matching</a></li><li class="chapter-item expanded "><a href="art-of-ryan/types.html"><strong aria-hidden="true">7.</strong> Types</a></li><li class="chapter-item expanded "><a href="art-of-ryan/comprehensions.html"><strong aria-hidden="true">8.</strong> Comprehensions</a></li><li class="chapter-item expanded affix "><li class="part-title">Integrating Ryan</li><li class="chapter-item expanded "><a href="integrating/the-ryan-cli.html"><strong aria-hidden="true">9.</strong> The Ryan CLI</a></li><li class="chapter-item expanded "><a href="integrating/rust.html"><strong aria-hidden="true">10.</strong> Rust</a></li><li class="chapter-item expanded "><a href="integrating/python.html"><strong aria-hidden="true">11.</strong> Python</a></li><li class="chapter-item expanded "><a href="integrating/javascript.html"><strong aria-hidden="true">12.</strong> JavaScript</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="reference/built-ins.html"><strong aria-hidden="true">13.</strong> List of built-ins</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -212,7 +212,7 @@ npm install ryan-lang-web   # JavaScript (web)
 npm install ryan-lang-node  # JavaScript (NodeJS)
 </code></pre>
 <p>If a binding is not available to your language, you can always use the Ryan CLI + you favorite JSON parser as a fallback. The Ryan CLI is already thought-out for this kind of programmatic interaction.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="hello-jason"><a class="header" href="#hello-jason">Hello... Jason!?</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hello-json"><a class="header" href="#hello-json">Hello... JSON!?</a></h1>
 <blockquote>
 <p>Note: if you are unfamiliar with JSON, you may skip this chapter and go right ahead to the next one. You will still be able to understand what Ryan is all about.</p>
 </blockquote>
@@ -253,6 +253,10 @@ strings
 are allowed!&quot;
 </code></pre>
 <p>... given that they are valid UTF8. However, only double-quoted strings are possible. How could you possibly like those single-quotes aberrations?</p>
+<p>Finally, <em>template strings</em> à la JavaScript are also supported. These will make your code way simpler to read:</p>
+<pre><code>`template ${&quot;string&quot;}`
+</code></pre>
+<p>The above code evaluates to the string <code>&quot;template string&quot;</code>.</p>
 <h2 id="conclusion-to-the-introduction"><a class="header" href="#conclusion-to-the-introduction">Conclusion to the introduction</a></h2>
 <p>You might be asking yourself about all the cosmetics and nice gadgets from the last section: &quot;so what? JSON5 offers basically the same thing and YAML does that and <em>tons</em> more. What is the upside here?&quot; Well, Ryan is capable of much more than these simple tricks and that is what we are going to explore in the following chapters. However, if all you got from this book is that Ryan is a nicer JSON, well... that's a start (and <em>definitely</em> a legitimate use for Ryan).</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="simple-types-and-simple-operations"><a class="header" href="#simple-types-and-simple-operations">Simple types and simple operations</a></h1>
@@ -321,10 +325,10 @@ welcome too&quot;
 <p>However, you can use the &quot;<code>fmt</code> trick&quot; to achieve the desired result:</p>
 <pre><code class="language-ryan">&quot;there are &quot; + fmt 4 + &quot; lights&quot;    // there are 4 lights
 </code></pre>
-<p>The <code>fmt</code>... thingy... takes any value in Ryan and produces a string representation of it, even if it is not very useful.</p>
-<blockquote>
-<p>Note: <code>fmt</code> is called a native pattern match and will be introduced later.</p>
-</blockquote>
+<p>Or, better still, you can use <em>template strings</em>, where you can interpolate full expressions in the middle of your string, like so:</p>
+<pre><code class="language-ryan">`there are ${5 - 1} lights`     // there are 4 lights
+</code></pre>
+<p>Note that template strings, unlike normal strings, are escaped using ` and not <code>&quot;</code>.</p>
 <h2 id="null"><a class="header" href="#null"><code>null</code></a></h2>
 <p>Lastly, but not least, there is the simplest type of all: null. Null has only one value: <code>null</code> and represents the absence of something. Null is not a boolean or an integer, so it will not behave like, say <code>false</code> or <code>0</code>. Therefore, all these won't work:</p>
 <pre><code class="language-ryan">1 + null                                // error!
@@ -360,7 +364,7 @@ x * x + 2 * x + 3
 </code></pre>
 <p>What this line says is that <code>a_guy</code> refers to the value <code>&quot;Ryan&quot;</code> from now on. Now, you can start using it to build more complex stuff on top of it:</p>
 <pre><code class="language-ryan">let a_guy = &quot;Ryan&quot;;
-&quot;Hello, &quot; + a_guy + &quot;!&quot;
+`Hello, ${a_guy}!`
 </code></pre>
 <p>This will evaluate to the text <code>&quot;Hello, Ryan!&quot;</code>. The construction <code>let ... = ...;</code> is called a <em>variable binding</em>, becaus it binds the value (<code>&quot;Ryan&quot;</code>) to an identifier (<code>a_guy</code>).</p>
 <h2 id="variable-names"><a class="header" href="#variable-names">Variable names</a></h2>
@@ -518,6 +522,10 @@ import &quot;does-not-exist.ryan&quot; or {};     // -&gt; (empty dictionary)
 <p>Although <code>import</code> expects a string as input, you cannot use an expression that yields a string; the import must be only a literal string. This will not work:</p>
 <pre><code class="language-ryan">import &quot;my-&quot; + &quot;file.ryan&quot;
 </code></pre>
+<p>nor will this</p>
+<pre><code>let num = 4;
+import `file-${num}.ryan`
+</code></pre>
 <p>You can however, go around this limitation in many cases. For example, you can use <code>if ... then ... else ...</code> for conditional imports:</p>
 <pre><code class="language-ryan">if 1 == 1 then
     import &quot;this.ryan&quot;
@@ -589,7 +597,7 @@ sum_both [5, 7]     // -&gt; 12
 <h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
 <p>All pattern matches in Ryan are <em>closures</em>. That means that you are free to use variables defined outside the pattern match definition in your return expression:</p>
 <pre><code class="language-ryan">let object_name = &quot;lights&quot;;
-let there_are quantity = &quot;There are &quot; + fmt quantity + &quot; &quot; + object_name;
+let there_are quantity = `There are ${quantity} ${object_name}`;
 
 there_are 4     // -&gt; &quot;There are 4 lights&quot;
 </code></pre>
@@ -597,7 +605,7 @@ there_are 4     // -&gt; &quot;There are 4 lights&quot;
 <p>A pattern match does not expect only an expression, but a whole block. This means that the body of a pattern match can be its whole self-contained Ryan program, with its own local variables, imports, pattern matches, etc...</p>
 <pre><code class="language-ryan">let there_are quantity = 
     let object_name = &quot;lights&quot;;
-    &quot;There are &quot; + fmt quantity + &quot; &quot; + object_name;
+    `There are ${quantity} ${object_name}`;
 
 there_are 4     // -&gt; &quot;There are 4 lights&quot;
 </code></pre>
@@ -681,8 +689,8 @@ let x: int = &quot;1&quot;;   // Error! Expected an integer, got text.
 </code></pre>
 <p>Every time you declare a new variable in a pattern match, you can define an optional type guard. If none is provided, it's assumed that the type is <code>any</code>, i.e., anything goes.</p>
 <p>Things get fun when you can bring <em>polymorphism</em> to your pattern matches by powering type guards with <em>alternative patterns</em>:</p>
-<pre><code class="language-ryan">let foo x: int = &quot;I am an integer: &quot; + fmt x;
-let foo x: float = &quot;I am a float: &quot; + fmt x;
+<pre><code class="language-ryan">let foo x: int = `I am an integer: ${x}`;
+let foo x: float = `I am a float: ${x}`;
 [foo 1, foo 1.0]        // -&gt; [&quot;I am an integer: 1&quot;, &quot;I am a float: 1&quot;]
 </code></pre>
 <p>It's recommended that you use type guards wherever possible. It helps keeping your code more <em>explicit</em> on what is going on. Besides, it is one extra way to check the data your program is receiving. For example, suppose you want to set a debug level for your program, which is a number, like:</p>
