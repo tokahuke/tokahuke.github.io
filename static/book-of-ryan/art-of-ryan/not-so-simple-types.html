@@ -182,6 +182,11 @@
 <p>The two main operations on lists are <em>concatenation</em> (just like with strings) and <em>index accessing</em>. Concatenation is pretty straightforward:</p>
 <pre><code class="language-ryan">[1, 2, 3] + [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]     // -&gt; [1, 2, 3, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
 </code></pre>
+<p>Alternatively, like in some programming languages, Ryan allows you to easily compose lists using <em>flatten expressions</em> (the <code>...</code> syntax below):</p>
+<pre><code class="language-ryan">let x = [4, 5, 6];
+[1, 2, 3, ...x]     // -&gt; [1, 2, 3, 4, 5, 6]
+</code></pre>
+<p>This yields a similar effect to adding lists.</p>
 <p>Index accessing is also easy: get the n-th element in the list. However, Ryan shares a pet-peeve with many other programming languages: the <em>first</em> position is indexed by the number zero.</p>
 <pre><code>[1, 2, 3][0]        // -&gt; 1
 [1, 2, 3][1]        // -&gt; 2, not 1!
@@ -233,7 +238,17 @@ x + y       // -&gt; { a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }
 x[&quot;a&quot;]      // -&gt; 1
 x[&quot;d&quot;]      // error! Key &quot;d&quot; missing in map
 </code></pre>
-<p>However, following the same idea as before, if a certain key could be a <em>valid variable name</em>, one can also use the shorter <code>.</code> operator to index dictionaries:</p>
+<p>And you can also use flatten expressions with dictionaries, just as if you would do with a list:</p>
+<pre><code class="language-ryan">let x = { a: 1, b: 2, c: 3 };
+{
+    d: 4,
+    e: 5,
+    f: 6,
+    ...x
+}   // -&gt; { a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }
+</code></pre>
+<p>This can be useful when creating <em>record inheritance</em> structures in Ryan.</p>
+<p>Lastly, if a certain key could be a <em>valid variable name</em>, one can also use the shorter <code>.</code> operator to index dictionaries:</p>
 <pre><code class="language-ryan">let x = { a: 1, b: 2, c: 3 };
 x.a     // -&gt; 1
 a.d     // error! Key &quot;d&quot; missing in map
